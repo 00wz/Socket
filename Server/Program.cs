@@ -28,8 +28,12 @@ namespace Server
             Console.WriteLine("Server if listening...");
             Accept(listenSocket, exitApplicationTokenSource.Token);
 
-            Console.WriteLine("Press anything to exit");
-            Console.ReadKey();
+            string input;
+            do
+            {
+                Console.WriteLine("Enter \":q\" to exit");
+                input = Console.ReadLine();
+            }while (input != ":q");
 
             //Server stop
             exitApplicationTokenSource.Cancel();
@@ -94,7 +98,7 @@ namespace Server
                     byte[] responseBytes = new byte[256];
                     int byteCount = await socket.ReceiveAsync(responseBytes, SocketFlags.None, cancellationToken);
                     message = Encoding.ASCII.GetString(responseBytes, 0, byteCount);
-                    Broadcast($"{Clients[socket]}: {message}", cancellationToken);
+                    Broadcast(message, cancellationToken);
                 }
             }
             catch (System.Net.Sockets.SocketException) 

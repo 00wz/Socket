@@ -32,34 +32,40 @@ namespace Client
             string message = Console.ReadLine();
             while (message != ":q") //enter ":q" to exit 
             {
-                messageBytes = Encoding.ASCII.GetBytes(message);
+                messageBytes = Encoding.ASCII.GetBytes($"{Nickname}: {message}"); 
                 socket.SendAsync(messageBytes);
                 message = Console.ReadLine();
             }
 
-            Console.WriteLine("!!!finally");
-            exitApplicationTokenSource?.Cancel();
-            exitApplicationTokenSource?.Dispose();
-            socket?.Close();
+            exitApplicationTokenSource.Cancel();
+            exitApplicationTokenSource.Dispose();
+            socket.Close(0);
         }
 
         //Listening to Server and Sending Nickname
         static async void Receive(Socket socket, CancellationToken cancellationToken)
         {
-            while (!cancellationToken.IsCancellationRequested)
-            {   byte[] responseBytes = new byte[256];
-                int byteCount=await socket.ReceiveAsync(responseBytes, SocketFlags.None, cancellationToken);
-                string message = Encoding.ASCII.GetString(responseBytes, 0, byteCount);
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {   byte[] responseBytes = new byte[256];
+                    int byteCount=await socket.ReceiveAsync(responseBytes, SocketFlags.None, cancellationToken);
+                    string message = Encoding.ASCII.GetString(responseBytes, 0, byteCount);
 
-                if(string.Equals(message,"NICK"))
-                {
-                    var nicknameBytes = Encoding.ASCII.GetBytes(Nickname);
-                    socket.SendAsync(nicknameBytes);
+                    if(string.Equals(message,"NICK"))
+                    {
+                        var nicknameBytes = Encoding.ASCII.GetBytes(Nickname);
+                        socket.SendAsync(nicknameBytes);
+                    }
+                    else
+                    {
+                        Console.WriteLine(message);
+                    }
                 }
-                else
-                {
-                    Console.WriteLine(message);
-                }
+            }
+            catch (System.OperationCanceledException)
+            {
+                return;
             }
         }
     }
