@@ -1,64 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Client
 {
     class Program
     {
+        //Connection Data
+        const string SERVER_IP = "192.168.0.168";
+        const int SERVER_PORT = 55555;
+        static string Nickname;
+
         static void Main(string[] args)
         {
-            IPAddress destination = IPAddress.Parse("192.168.0.168");
-            int port = 55555;
-            Socket socket = null;
-            CancellationTokenSource exitApplicationTokenSource = null;
+            IPAddress destination = IPAddress.Parse(SERVER_IP);
+            CancellationTokenSource exitApplicationTokenSource = new CancellationTokenSource();
 
-            try
+            //Choosing Nickname
+            Console.Write("Choose your nickname: ");
+            Nickname = Console.ReadLine();
+
+            //Connecting To Server
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Connect(destination, SERVER_PORT);
+
+            //Starting Threads For Listening
+            Receive(socket, exitApplicationTokenSource.Token);
+
+            //Writing
+            byte[]? messageBytes;
+            string message = Console.ReadLine();
+            while (message != ":q") //enter ":q" to exit 
             {
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.Connect(destination, port);
-                exitApplicationTokenSource = new CancellationTokenSource();
-
-                Receive(socket, exitApplicationTokenSource.Token);
-
-                Console.Write("Choose your nickname: ");
-                string message = Console.ReadLine();
-
-                //write 
-                byte[]? messageBytes;
-                while (message != ":q") //enter ":q" to exit 
-                {
-                    messageBytes = Encoding.UTF8.GetBytes(message);
-                    socket.SendAsync(messageBytes);
-                    message = Console.ReadLine();
-                }
+                messageBytes = Encoding.ASCII.GetBytes(message);
+                socket.SendAsync(messageBytes);
+                message = Console.ReadLine();
             }
-            finally
-            {
-                socket?.Close();
-                exitApplicationTokenSource?.Cancel();
-                exitApplicationTokenSource?.Dispose();
-            }
+
+            Console.WriteLine("!!!finally");
+            exitApplicationTokenSource?.Cancel();
+            exitApplicationTokenSource?.Dispose();
+            socket?.Close();
         }
 
-        //receive
+        //Listening to Server and Sending Nickname
         static async void Receive(Socket socket, CancellationToken cancellationToken)
         {
-            byte[] responseBytes = new byte[256];
-            char[] responseChars = new char[256];
-
             while (!cancellationToken.IsCancellationRequested)
-            {
-                int bytesReceived = await socket.ReceiveAsync(responseBytes, SocketFlags.None, cancellationToken);
+            {   byte[] responseBytes = new byte[256];
+                int byteCount=await socket.ReceiveAsync(responseBytes, SocketFlags.None, cancellationToken);
+                string message = Encoding.ASCII.GetString(responseBytes, 0, byteCount);
 
-                int charCount = Encoding.ASCII.GetChars(responseBytes, 0, bytesReceived, responseChars, 0);
-
-                Console.Out.WriteLine(responseChars, 0, charCount);
+                if(string.Equals(message,"NICK"))
+                {
+                    var nicknameBytes = Encoding.ASCII.GetBytes(Nickname);
+                    socket.SendAsync(nicknameBytes);
+                }
+                else
+                {
+                    Console.WriteLine(message);
+                }
             }
         }
     }
