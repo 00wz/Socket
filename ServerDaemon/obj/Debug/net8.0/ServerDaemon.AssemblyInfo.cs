@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServerDaemon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9eba9f6889a559b2162c6dcfc22aafbcfbf04513")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServerDaemon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServerDaemon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

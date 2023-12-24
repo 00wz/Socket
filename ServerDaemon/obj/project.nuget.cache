@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yqTGltAJD5DLKWUY0Ii+VpAOUDXKOzDXXRCtpxyW0s/quI5/qMnU4vlpLjfFm98vR8sQ7iqDAAi6kfvGsEMtIg==",
+  "dgSpecHash": "ocVwwev7aO4RRhwIl2l9UrzdffSnJrJTLv983FWhjvwak3NeaMykoBEiBWOXVI6TK2bFKq1zbzi6ZOYo4AV0QA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pavel\\source\\repos\\Socket\\ServerDaemon\\ServerDaemon.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\8.0.0\\microsoft.extensions.filesystemglobbing.8.0.0.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.hosting\\8.0.0\\microsoft.extensions.hosting.8.0.0.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\8.0.0\\microsoft.extensions.hosting.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.hosting.systemd\\8.0.0\\microsoft.extensions.hosting.systemd.8.0.0.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Pavel\\.nuget\\packages\\microsoft.extensions.logging.configuration\\8.0.0\\microsoft.extensions.logging.configuration.8.0.0.nupkg.sha512",

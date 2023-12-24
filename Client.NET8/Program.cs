@@ -7,7 +7,7 @@ namespace Client
     class Program
     {
         //Connection Data
-        const string SERVER_IP = "192.168.0.168";
+        const string SERVER_IP = "84.201.176.18";
         const int SERVER_PORT = 55555;
         static string Nickname;
 

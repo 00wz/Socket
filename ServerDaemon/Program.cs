@@ -9,7 +9,8 @@ public class Program
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddHostedService<ServerClass>();
-            });
+            })
+            .UseSystemd();
 
         await builder.RunConsoleAsync();
     }
