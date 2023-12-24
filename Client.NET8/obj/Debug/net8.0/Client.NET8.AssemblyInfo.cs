@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Client.NET8")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae6c785f5dc030acc04b1abedc5f6511ebaf46e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9eba9f6889a559b2162c6dcfc22aafbcfbf04513")]
 [assembly: System.Reflection.AssemblyProductAttribute("Client.NET8")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Client.NET8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

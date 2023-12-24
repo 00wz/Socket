@@ -12,3 +12,4 @@ C:\Users\Pavel\source\repos\Socket\Client.NET8\obj\Debug\net8.0\refint\Client.NE
 C:\Users\Pavel\source\repos\Socket\Client.NET8\obj\Debug\net8.0\Client.NET8.pdb
 C:\Users\Pavel\source\repos\Socket\Client.NET8\obj\Debug\net8.0\Client.NET8.genruntimeconfig.cache
 C:\Users\Pavel\source\repos\Socket\Client.NET8\obj\Debug\net8.0\ref\Client.NET8.dll
+C:\Users\Pavel\source\repos\Socket\Client.NET8\obj\Debug\net8.0\Client.NET8.sourcelink.json
